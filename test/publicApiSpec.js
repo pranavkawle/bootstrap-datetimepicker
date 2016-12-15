@@ -1169,4 +1169,18 @@ describe('Public API method tests', function () {
         makeFormatTest('YYYY-MM-DD HH:mm:ss Z', 'America/New_York');
         makeFormatTest('YYYY-MM-DD HH:mm:ss', 'America/New_York');
     });
+	
+	describe('highlightToday() function', function () {
+		describe('access', function () {
+			it('gets highlight today', function () {
+				expect(dtpElement.datetimepicker('highlightToday')).toBe(true);
+			});
+			
+			it('sets highlight today', function () {
+				var highlightToday = false;
+				expect(dtpElement.datetimepicker('highlightToday', highlightToday)).toBe(dtpElement);
+				expect(dtpElement.datetimepicker('parseInputDate')).toBe(parseInputDate);
+			});
+		});
+	});
 });

@@ -730,7 +730,7 @@
                     if (!isValid(currentDate, 'd')) {
                         clsName += ' disabled';
                     }
-                    if (currentDate.isSame(getMoment(), 'd')) {
+                    if (options.highlightToday && currentDate.isSame(getMoment(), 'd')) {
                         clsName += ' today';
                     }
                     if (currentDate.day() === 0 || currentDate.day() === 6) {
@@ -2314,6 +2314,18 @@
             return picker;
         };
 
+        picker.highlightToday = function (highlightToday) {
+            if (arguments.length === 0) {
+                return options.highlightToday;
+            }
+
+            if (typeof highlightToday !== 'boolean') {
+                throw new TypeError('highlightToday() expects a boolean parameter');
+            }
+            options.highlightToday = highlightToday;
+            return picker;
+        };
+
         // initializing element and component attributes
         if (element.is('input')) {
             input = element;
@@ -2615,7 +2627,8 @@
         disabledTimeIntervals: false,
         disabledHours: false,
         enabledHours: false,
-        viewDate: false
+        viewDate: false,
+        highlightToday: true
     };
     if (typeof module !== 'undefined') {
         module.exports = $.fn.datetimepicker;
